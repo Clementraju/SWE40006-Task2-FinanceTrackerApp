@@ -1,0 +1,105 @@
+﻿@model FinanceTrackerApp.Models.FinanceDashboard
+
+@{
+
+    ViewData["Title"] = "Finance Tracker";
+
+}
+
+<div class="container mt-4">
+    <div class="text-center mb-4">
+        <h1 class="display-5">Finance Tracker</h1>
+        <p class="text-muted">Personal Financial Dashboard</p>
+
+        <div class="alert alert-info mt-3">
+            <strong>Environment:</strong> @Model.EnvironmentName
+        </div>
+    </div>
+
+    <div class="row g-3 mb-4">
+        <div class="col-md-3">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h6 class="text-muted">Total Balance</h6>
+                    <h3>$@Model.TotalBalance.ToString("N2")</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h6 class="text-muted">Monthly Income</h6>
+                    <h3>$@Model.MonthlyIncome.ToString("N2")</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h6 class="text-muted">Monthly Expenses</h6>
+                    <h3>$@Model.MonthlyExpenses.ToString("N2")</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h6 class="text-muted">Monthly Savings</h6>
+                    <h3>$@Model.MonthlySavings.ToString("N2")</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h4 class="mb-3">Recent Transactions</h4>
+
+            <div class="table-responsive">
+                <table class="table table-striped align-middle">
+                    <thead>
+                        <tr>
+                            <th>Description</th>
+                            <th>Type</th>
+                            <th class="text-end">Amount</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        @foreach (var transaction in Model.Transactions)
+
+                        {
+                            <tr>
+                                <td>@transaction.Description</td>
+                                <td>@transaction.Type</td>
+                                <td class="text-end">
+
+                                    @if (transaction.Type == "Income")
+
+                                    {
+                                        <span>+$@transaction.Amount.ToString("N2")</span>
+
+                                    }
+
+                                    else
+
+                                    {
+                                        <span>-$@transaction.Amount.ToString("N2")</span>
+
+                                    }
+                                </td>
+                            </tr>
+
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+ 

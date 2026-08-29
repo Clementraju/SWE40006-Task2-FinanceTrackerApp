@@ -1,4 +1,4 @@
-namespace FinanceTrackerApp.Models
+namespace Task21SampleApp.Models
 {
     public class ErrorViewModel
     {
